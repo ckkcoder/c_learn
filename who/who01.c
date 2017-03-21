@@ -40,8 +40,10 @@ void show_info(struct utmp *utbufp)
 	printf("%-8.8s",utbufp->ut_line);
 	printf(" ");
 	//printf("%10d",utbufp->ut_time);
-	show_time(&(utbufp->ut_time));
-	printf(" ");
+	if( kill(utbufp->ut_pid,0) != -1 ){
+		show_time(&(utbufp->ut_time));
+		printf(" ");
+	}
 #ifdef SHOWHOST
 	if( utbufp->ut_host[0] != '\0' )
 		printf("(%s)",utbufp->ut_host);
