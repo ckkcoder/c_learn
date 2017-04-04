@@ -79,5 +79,4 @@ void oops(char *s1,char *s2)
 int check_no_same(struct stat *sp1,struct stat *sp2)
 {
 	return( !(sp1->st_ino == sp2->st_ino) );
-
 }
