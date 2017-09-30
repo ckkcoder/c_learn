@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
             }
         }
         if(!(year >= 1900 && year <= 9999)){
-            printf("cal: year `%d' not in range 1..9999\n", year);
+            printf("cal: year `%d' not in range 1900..9999\n", year);
             exit(1);
         }
         if(argc == 3){
