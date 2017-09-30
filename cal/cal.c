@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
                 exit(1);
             }
         }
-        if(!(year >= 1900 && year <= 9999)){
+        if(!(year >= 1 && year <= 9999)){
             printf("cal: year `%d' not in range 1..9999\n", year);
             exit(1);
         }
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 
 bool is_leapyear(int year)
 {
-    if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+    if((year % 4 == 0 && (/*year < 300 || */year % 100 != 0)) || year % 400 == 0)
         return true;
     return false;
 }
@@ -95,7 +95,7 @@ int month_days(int year, int month)
 int get_first_wday_year(int year)
 {
     int i, wday = 1;
-    for(i = 1900; i < year; i++){
+    for(i = 1; i < year; i++){
         if(is_leapyear(i)) wday = (wday + 366) % 7;
         else wday = (wday + 365) % 7;
     }
@@ -180,7 +180,7 @@ void show_year_cal(int year)
                 printf("   ");
             while(f_wday < 7 && ++f_days <= f_mday){
                 if(is_same_day(pnow_time, year, f_mon - 1, f_days)) HIGHT_LIGHT();
-                if(f_wday < 10)  printf(" ");
+                if(f_days < 10)  printf(" ");
                 printf("%d", f_days);
                 if(is_same_day(pnow_time, year, f_mon - 1, f_days)) UN_HIGHT_LIGHT();
                 ++f_wday;
@@ -195,7 +195,7 @@ void show_year_cal(int year)
                 printf("   ");
             while(s_wday < 7 && ++s_days <= s_mday){
                 if(is_same_day(pnow_time, year, f_mon, s_days)) HIGHT_LIGHT();
-                if(s_wday < 10)  printf(" ");
+                if(s_days < 10)  printf(" ");
                 printf("%d", s_days);
                 if(is_same_day(pnow_time, year, f_mon, s_days)) UN_HIGHT_LIGHT();
                 ++s_wday;
@@ -210,7 +210,7 @@ void show_year_cal(int year)
                 printf("   ");
             while(t_wday < 7 && ++t_days <= t_mday){
                 if(is_same_day(pnow_time, year, f_mon + 1, t_days)) HIGHT_LIGHT();
-                if(t_wday < 10)  printf(" ");
+                if(t_days < 10)  printf(" ");
                 printf("%d", t_days);
                 if(is_same_day(pnow_time, year, f_mon + 1, t_days)) UN_HIGHT_LIGHT();
                 ++t_wday;
